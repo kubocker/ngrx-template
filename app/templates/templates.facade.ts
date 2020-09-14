@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 /* your app */
-import { Templates } from './templates.service';
+import { TemplatesService } from './store/templates.service';
 import { State } from './store/templates.state';
 import * as TemplateSelectors from './store/templates.selectors';
 import * as TemplateActions from './store/templates.actions';
@@ -38,6 +38,15 @@ export class TemplatesFacade {
     private service: TemplatesService,
   ) {
 
+    //
+    this.service.getAuthorName().subscribe(name => {
+      this.setUserAuthor(name);
+    })
+
+    //
+    this.service.getSampleTitle().subscribe(title => {
+      this.setUserSample(title);
+    })
 
   }
 
